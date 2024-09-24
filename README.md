@@ -47,3 +47,6 @@ Figma：https://www.figma.com/design/NmKEucVCnFpJPlwXc6tykn/%E9%87%8E%E7%90%83%E
 - [ ] スパイク管理機能_スパイク一覧
 - [ ] スパイク管理機能_スパイク登録
 - [ ] スパイク管理機能_スパイク編集
+
+### ER図
+https://drive.google.com/file/d/1oaysKvdoQArJCPGTtoYslsd1IoM8oxrH/view?usp=sharing
