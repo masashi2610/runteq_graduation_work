@@ -1,0 +1,10 @@
+ja:
+  header:
+    title: "Spike Log"
+    sign_up: "新規登録"
+    search_spike: "スパイク検索"
+    spike_page: "スパイク登録"
+    login: "ログイン"
+    logout: "ログアウト"
+    user_destroy: "アカウント削除"
+    delete: "削除しますか？"
