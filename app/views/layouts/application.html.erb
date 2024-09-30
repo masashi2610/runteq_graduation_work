@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App</title>
+    <title><%= page_title(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= favicon_link_tag('favicon.jpeg') %>
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <!-- Tailwind CSSのCDNリンクを追加 -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    
+    <!-- Font AwesomeのCDNリンクを追加 -->
+    <script src="https://kit.fontawesome.com/74fcf6a229.js" crossorigin="anonymous"></script>
+    <!-- スクロールヒント読み込み -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scroll-hint/css/scroll-hint.css">
+    <script src="https://cdn.jsdelivr.net/npm/scroll-hint/js/scroll-hint.min.js"></script>
   </head>
 
-  <body>
+  <body class="font-sans md:mt-[88px] mt-[60px] md:mb-0 mb-[60px] bg-white">
+    <% if logged_in? %>
+      <%= render 'shared/header' %>
+    <% else %>
+      <%= render 'shared/before_login_header' %>
+    <% end %>
+    <%= render 'shared/flash_messages' %>
     <%= yield %>
+    <% if logged_in? %>
+      <%= render 'shared/footer' %>
+    <% else %>
+      <%= render 'shared/before_login_footer' %>
+    <% end %>
   </body>
 </html>

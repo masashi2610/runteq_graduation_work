@@ -1,7 +1,94 @@
-<h1 class="text-3xl font-bold underline">
-    Hello world!
-</h1>
+<div>
+  <div class='w-full md:h-[500px] sm:h-[400px] h-[300px] relative'>
+    <div class="slide">
+      <div class="slide-image"><%= image_tag 'spike1.jpg', class: 'bg-cover bg-center object-cover h-full w-full' %></div>
+      <div class="slide-image"><%= image_tag 'spike2.jpg', class: 'bg-cover bg-center object-cover h-full w-full' %></div>
+      <div class="slide-image"><%= image_tag 'spike3.jpg', class: 'bg-cover object-top object-cover h-full w-full' %></div>
+    </div>
+    <div class='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-full '>
+      <h1 class='font-heading font-bold text-3xl md:text-5xl sm:text-4xl text-white original-text-shadow'><%= t('.一緒に戦った') %><br><%= t('.大切なスパイクを記録できる') %></h1>
+      <% if logged_in? %>
+        <div class="flex-col justify-center md:mt-8 mt-4">
+          <%= link_to t('.tackle_found'), new_fishing_suggestion_path, class: 'btn text-white bg-orange px-10' %>
+          <%= link_to t('.tackle_registration'), new_tackle_path, class: 'btn text-white bg-blue px-10 md:mt-0 mt-3 md:ml-5 ml-0' %>
+        </div>
+      <% else %>
+        <%= link_to t('.登録して始める'), login_path, class: 'btn text-white bg-blue-500 mt-8 px-10' %>
+      <% end %>
+    </div>
+  </div>
 
-<button class="bg-gray-900 hover:bg-gray-800 text-white rounded px-4 py-2">tailwind</button>
+  <div class='md:py-14 py-7 mx-auto container text-center md:px-4 px-2'>
+    <h2 class='font-bold text-black md:text-xl text-lg md:mt-1 mt-3'>
+      <%= t('.SpikeLogは、野球プレイヤーのためのスパイクに特化したアプリです。') %><br class="md:block hidden">
+      <%= t('.スパイク履歴を管理したり、最新のスパイクを探すことができます！') %>
+    </h2>
+    <div class='w-full md:mt-10 mt-5 grid md:grid-cols-4 grid-cols-2 md:gap-4 gap-2'>
+    <div class='w-full'>
+      <%= image_tag 'spike4.jpg', class: 'w-full h-full bg-contain bg-center object-cover' %>
+    </div>
+    <div class='w-full'>
+      <%= image_tag 'spike5.jpg', class: 'w-full h-full bg-contain bg-center object-cover' %>
+    </div>
+    <div class='w-full'>
+      <%= image_tag 'spike6.jpg', class: 'w-full h-full bg-contain bg-center object-cover' %>
+    </div>
+    <div class='w-full'>
+      <%= image_tag 'spike7.jpg', class: 'w-full h-full bg-contain bg-center object-cover' %>
+    </div>
+  </div>
 
-<button class="btn">daisyUI</button>
+  <div class='mx-auto md:mt-10 mt-5 text-black'>
+  <h2 class='text-center text-black font-bold md:text-3xl text-2xl'><%= t('.使い方') %></h2>
+  <div class="md:mt-10 mt-5">
+    <div class="p-4 border-2 border-blue-500 rounded-lg"> <!-- ブルーの枠線 -->
+      <h3 class="md:text-2xl text-xl font-bold text-orange-500"><%= t('.①スパイク登録') %></h3>
+      <div class="slide-content">
+        <div class="md:mt-6 mt-3 md:flex items-center">
+          <div class="flex justify-center md:w-1/2 w-full mx-auto">
+            <div class='text-center'>
+              <p class='font-bold md:text-lg text-base leading-relaxed md:mt-4 mt-2'><%= t('.自分が使ったスパイクを') %><br><%= t('.想い出とともに登録しよう!') %></p>
+              <%= link_to t('.登録して始める'), login_path, class: 'btn text-white bg-blue-500 md:mt-4 mt-2 md:px-6 px-3' %>
+              <% unless logged_in? %>
+                <p class="md:text-sm text-xs text-red-500 md:mt-6 mt-3"><%= t('.〜ユーザー登録する必要があります〜') %></p> <!-- オレンジの文字 -->
+              <% end %>
+            </div>
+          </div>      
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="md:mt-10 mt-5">
+    <div class="p-4 border-2 border-blue-500 rounded-lg"> <!-- ブルーの枠線 -->
+      <h3 class="md:text-2xl text-xl font-bold text-orange-500"><%= t('.②スパイク検索') %></h3>
+      <div class="slide-content">
+        <div class="md:mt-6 mt-3 md:flex items-center">
+          <div class="flex justify-center md:w-1/2 w-full mx-auto">
+            <div class='text-center'>
+              <p class='font-bold md:text-lg text-base leading-relaxed md:mt-4 mt-2'><%= t('.希望の条件を入力すると') %><br><%= t('.AIがあなたに最適なスパイクを提案します') %></p>
+              <%= link_to t('.スパイク検索'), login_path, class: 'btn text-white bg-blue-500 md:mt-4 mt-2 md:px-6 px-3' %>
+              <% unless logged_in? %>
+                <p class="md:text-sm text-xs text-red-500 md:mt-6 mt-3"><%= t('.ユーザー登録不要です') %></p> <!-- オレンジの文字 -->
+              <% end %>
+            </div>
+          </div>      
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <% unless logged_in? %>
+  <div class="text-center relative rounded overflow-hidden md:mt-10 mt-5">
+    <%= image_tag 'footer.png', class: 'w-full max-w-full md:h-80 h-40 bg-cover bg-center object-cover' %>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-full">
+      <h2 class='font-heading text-center text-orange font-bold md:text-3xl text-2xl original-text-shadow'><%= t('.スパイクを登録しませんか？') %></h2>
+      <%= link_to t('.スパイク登録'), login_path, class: 'btn text-white bg-red-500 md:mt-8 mt-4 md:px-10 px-5' %>
+    </div>
+  </div>
+<% end %>
+</div>
+</div>
+</div>

@@ -30,6 +30,12 @@ gem "cssbundling-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+gem "sorcery"
+
+gem "meta-tags"
+
+gem 'rails-i18n', '~> 7.0.0'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
