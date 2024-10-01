@@ -70,7 +70,7 @@
               <p class='font-bold md:text-lg text-base leading-relaxed md:mt-4 mt-2'><%= t('.希望の条件を入力すると') %><br><%= t('.AIがあなたに最適なスパイクを提案します') %></p>
               <%= link_to t('.スパイク検索'), login_path, class: 'btn text-white bg-blue-500 md:mt-4 mt-2 md:px-6 px-3' %>
               <% unless logged_in? %>
-                <p class="md:text-sm text-xs text-red-500 md:mt-6 mt-3"><%= t('.ユーザー登録不要です') %></p> <!-- オレンジの文字 -->
+                <p class="md:text-sm text-xs text-red-500 md:mt-6 mt-3"><%= t('.〜ユーザー登録不要です〜') %></p> <!-- オレンジの文字 -->
               <% end %>
             </div>
           </div>      
