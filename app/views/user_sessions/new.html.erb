@@ -1,0 +1,28 @@
+<% content_for(:title, t('.title')) %>
+<div class=''>
+  <div class='py-14 max-w-lg mx-auto px-4'>
+    <h1 class='text-center text-3xl text-black font-bold'><%= t('.ログイン') %></h1>
+    <%= form_with(model: @user, url: login_path, class: 'mt-6') do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+      <div class='mt-4'>
+        <%= f.label :メールアドレス, class: 'text-black font-bold required' %>
+        <%= f.email_field :email, class: 'shadow appearance-none border-2 border-blue rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+      <div class='mt-4'>
+        <%= f.label :パスワード, class: 'text-black font-bold required' %>
+        <%= f.password_field :password, class: 'shadow appearance-none border-2 border-blue rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+      <div class='mt-4 text-center'>
+        <button type="submit" class="btn font-bold bg-blue-500 text-white py-2 px-10 rounded focus:outline-none focus:shadow-outline"><%= t('.ログイン') %></button>
+      </div>
+    <% end %>
+
+    <div class='mt-8 text-center'>
+      <%= link_to t('.新規登録ページへ'), new_user_path, class: 'underline underline-offset-2 text-link hover:orange font-bold hover:opacity-70' %>
+    </div>
+    <div class='mt-2 text-center'>
+      <%= link_to t('.パスワードをお忘れの方はこちら'), new_password_reset_path, class: 'underline underline-offset-2 text-orange font-bold hover:opacity-70' %>
+    </div>
+  </div>
+
+</div>
