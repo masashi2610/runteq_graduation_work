@@ -8,3 +8,30 @@ ja:
     logout: "ログアウト"
     user_destroy: "アカウント削除"
     delete: "削除しますか？"
+  user_sessions:
+    create:
+      success: ログインに成功しました
+      failure: ログインに失敗しました
+    destroy:
+      success: ログアウトしました
+  users:
+    create:
+      success: ユーザー登録に成功しました
+      failure: ユーザー登録に失敗しました
+    destroy:
+      success: ユーザー削除に成功しました
+      failure: ユーザー削除に失敗しました
+  password_resets:
+    new:
+      title: パスワードリセット申請
+      submit: 申請
+      return: 戻る
+    create:
+      send_mail: パスワードリセットのメールを送信しました
+      not_found: Emailが見つかりません
+    edit:
+      title: パスワードリセット
+      submit: リセット
+    update:
+      success: パスワードのリセットが完了しました
+      failure: パスワードのリセットに失敗しました
