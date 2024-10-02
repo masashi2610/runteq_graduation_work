@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
   root "tops#index"
   resources :users, only: %i[new create destroy]
   resources :password_resets, only: %i[new create edit update]

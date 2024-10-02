@@ -36,6 +36,8 @@ gem "meta-tags"
 
 gem 'rails-i18n', '~> 7.0.0'
 
+gem 'config'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -71,6 +73,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'letter_opener_web'
 end
 
 group :test do
