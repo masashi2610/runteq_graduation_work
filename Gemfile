@@ -38,6 +38,8 @@ gem 'rails-i18n', '~> 7.0.0'
 
 gem 'config'
 
+gem 'kaminari'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

@@ -2,7 +2,6 @@
 <div class=''>
   <div class='py-14 max-w-lg mx-auto px-4'>
     <h1 class='text-center text-3xl text-black font-bold'><%= t('.ユーザー登録') %></h1>
-    <p class='text-center text-black mt-2'><%= t('.〜自分のスパイクを登録できます〜') %></p>
     <%= form_with(model: @user, class: 'mt-4') do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 

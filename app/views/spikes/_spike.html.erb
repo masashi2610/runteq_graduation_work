@@ -1,0 +1,28 @@
+<div class="flex flex-col justify-between text-center shadow-xl bg-white rounded-lg overflow-hidden">
+  <div class="overflow-hidden">
+    <%= link_to spike_path(spike), class: "block hover:shadow-lg transition-transform duration-300 transition transform hover:scale-105" do %>
+      <% if spike.image.attached? %>
+        <%= image_tag spike.image, class: "w-full md:h-60 h-52 object-cover" %>
+      <% else %>
+        <%= image_tag 'spike_default.jpg', class: "w-full md:h-60 h-52 object-cover" %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="md:px-6 px-3 md:pt-6 pt-3 md:pb-10 pb-8 relative">
+    <h2 class="text-center text-xl md:text-2xl font-bold font-bold text-blue"><%= spike.name %></h2>
+
+    <div class='flex justify-end absolute right-2 bottom-2 z-1 md:lg text-base'>
+      <%= link_to edit_spike_path(spike) do %>
+        <i class="fa-solid fa-pen text-blue"></i>
+      <% end %>
+      <%= link_to spike_path(spike), method: :delete, data: { turbo_method: :delete, turbo_confirm: t('.delete') }, class: 'ml-2' do %>
+        <i class="fa-solid fa-trash text-blue"></i>
+      <% end %>
+    </div>
+
+    <div class='md:text-base text-sm text-silver absolute left-2 bottom-2 md:text-base text-sm'>
+      <p><%= spike.updated_at.strftime('%Y/%m/%d %H:%M') %></p>
+    </div>
+  </div>
+</div>
