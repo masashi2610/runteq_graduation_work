@@ -47,6 +47,6 @@ class SpikesController < ApplicationController
     end
   
     def spike_params
-      params.require(:spike).permit(:name, :image)
+      params.require(:spike).permit(:name, :image, :memory)
     end
   end
