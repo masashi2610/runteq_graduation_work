@@ -22,6 +22,8 @@ services:
       - .:/app
     environment:
       - RAILS_ENV=development
+      - RWS_APPLICATION_ID=1045324420383930231
+      - RAKUTEN_AFFILIATE_ID=3128f287.ff712f2b.3128f288.92e8c20a
     ports:
       - "3000:3000"
     depends_on:
