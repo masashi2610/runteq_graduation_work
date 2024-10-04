@@ -4,7 +4,7 @@
     <p class='text-center text-black mt-2'><%= t('.AIの提案は1日3回まで受けることができます。次の日にリセットされます。') %></p>
 
     <div class="md:mt-8 mt-4">
-        <%= form_with model: @spike_suggestion, url: suggestion_page_path, local: true, id: 'spike-suggestion-form' do |f| %>
+        <%= form_with model: @spike_suggestion, url: '#', local: true, id: 'spike-suggestion-form' do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-black">
             <div class="flex flex-col">
