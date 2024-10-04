@@ -1,0 +1,25 @@
+<%= form_with model: @spike, id: 'spike_form', class: 'md:mt-10 mt-5' do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class='md:mt-10 mt-5'>
+        <%= f.label :スパイク名, class: 'text-black font-bold md:text-xl text-lg required' %>
+        <%= f.text_field :name, class: 'shadow appearance-none border-2 border-blue rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline' %>
+    </div>
+    <div class='md:mt-10 mt-5'>
+        <%= f.label :画像, class: 'text-black font-bold md:text-xl text-lg' %>
+        <%= f.file_field :image, class: 'shadow appearance-none border-2 border-blue rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline' %>
+    </div>
+    <div class="md:mt-10 mt-5" id="previews_spike">
+        <% if @spike.persisted? && @spike.image.attached? %>
+            <div class="preview">
+                <%= image_tag @spike.image, class: 'preview-image' %>
+            </div>
+        <% end %>
+    </div>
+    <div class='md:mt-10 mt-5'>
+    <%= f.label :想い出, class: 'text-black font-bold md:text-xl text-lg' %>
+    <%= f.text_area :memory, class: 'shadow appearance-none border-2 border-blue rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline', rows: 4 %>
+    </div>
+    <div class='md:mt-8 mt-4 text-center'>
+        <button type="submit" class="md:text-base text-sm btn font-bold bg-blue-500 text-white md:py-2 py-1 md:px-10 px-5 rounded focus:outline-none focus:shadow-outline"><%= t('.スパイク登録') %></button>
+    </div>
+<% end %>

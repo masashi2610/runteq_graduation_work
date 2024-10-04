@@ -9,8 +9,8 @@
       <h1 class='font-heading font-bold text-3xl md:text-5xl sm:text-4xl text-white original-text-shadow'><%= t('.一緒に戦った') %><br><%= t('.大切なスパイクを記録できる') %></h1>
       <% if logged_in? %>
         <div class="flex-col justify-center md:mt-8 mt-4">
-        <%= link_to t('.スパイク登録'), login_path, class: 'btn text-white bg-blue-500 md:mt-8 mt-4 md:px-10 px-5' %>
-        <%= link_to t('.スパイク検索'), login_path, class: 'btn text-white bg-blue-500 md:mt-8 mt-4 md:px-10 px-5' %>
+        <%= link_to t('.スパイク登録'), spikes_path, class: 'btn text-white bg-blue-500 md:mt-8 mt-4 md:px-10 px-5' %>
+        <%= link_to t('.スパイク検索'), spike_suggestions_path, class: 'btn text-white bg-blue-500 md:mt-8 mt-4 md:px-10 px-5' %>
         </div>
       <% else %>
         <%= link_to t('.登録して始める'), new_user_path, class: 'btn text-white bg-blue-500 mt-8 px-10' %>
@@ -21,7 +21,7 @@
   <div class='md:py-14 py-7 mx-auto container text-center md:px-4 px-2'>
     <h2 class='font-bold text-black md:text-xl text-lg md:mt-1 mt-3'>
       <%= t('.SpikeLogは、野球プレイヤーのためのスパイクに特化したアプリです。') %><br class="md:block hidden">
-      <%= t('.スパイク履歴を管理したり、最新のスパイクを探すことができます！') %>
+      <%= t('.スパイク履歴を管理したり、最新スパイクを探すことができます！') %>
     </h2>
     <div class='w-full md:mt-10 mt-5 grid md:grid-cols-4 grid-cols-2 md:gap-4 gap-2'>
     <div class='w-full'>
@@ -48,7 +48,7 @@
           <div class="flex justify-center md:w-1/2 w-full mx-auto">
             <div class='text-center'>
               <p class='font-bold md:text-lg text-base leading-relaxed md:mt-4 mt-2'><%= t('.自分が使ったスパイクを') %><br><%= t('.想い出とともに登録しよう!') %></p>
-              <%= link_to t('.登録して始める'), login_path, class: 'btn text-white bg-blue-500 md:mt-4 mt-2 md:px-6 px-3' %>
+              <%= link_to t('.登録して始める'), spikes_path, class: 'btn text-white bg-blue-500 md:mt-4 mt-2 md:px-6 px-3' %>
               <% unless logged_in? %>
                 <p class="md:text-sm text-xs text-red-500 md:mt-6 mt-3"><%= t('.〜ユーザー登録する必要があります〜') %></p> <!-- オレンジの文字 -->
               <% end %>
@@ -68,7 +68,7 @@
           <div class="flex justify-center md:w-1/2 w-full mx-auto">
             <div class='text-center'>
               <p class='font-bold md:text-lg text-base leading-relaxed md:mt-4 mt-2'><%= t('.希望の条件を入力すると') %><br><%= t('.AIがあなたに最適なスパイクを提案します') %></p>
-              <%= link_to t('.スパイク検索'), login_path, class: 'btn text-white bg-blue-500 md:mt-4 mt-2 md:px-6 px-3' %>
+              <%= link_to t('.スパイク検索'), spike_suggestions_path, class: 'btn text-white bg-blue-500 md:mt-4 mt-2 md:px-6 px-3' %>
               <% unless logged_in? %>
                 <p class="md:text-sm text-xs text-red-500 md:mt-6 mt-3"><%= t('.〜ユーザー登録不要です〜') %></p> <!-- オレンジの文字 -->
               <% end %>

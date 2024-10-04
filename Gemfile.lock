@@ -98,6 +98,10 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     deep_merge (1.2.2)
+    dotenv (3.1.4)
+    dotenv-rails (3.1.4)
+      dotenv (= 3.1.4)
+      railties (>= 6.1)
     erubi (1.13.0)
     faraday (2.12.0)
       faraday-net_http (>= 2.0, < 3.4)
@@ -122,6 +126,18 @@ GEM
     json (2.7.2)
     jwt (2.9.1)
       base64
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     launchy (3.0.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
@@ -231,6 +247,8 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.2.1)
+    rakuten_web_service (1.13.2)
+      json (~> 2.3)
     rdoc (6.7.0)
       psych (>= 4.0.0)
     regexp_parser (2.9.2)
@@ -297,14 +315,17 @@ DEPENDENCIES
   config
   cssbundling-rails
   debug
+  dotenv-rails
   jbuilder
   jsbundling-rails
+  kaminari
   letter_opener_web
   meta-tags
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.4)
   rails-i18n (~> 7.0.0)
+  rakuten_web_service
   selenium-webdriver
   sorcery
   sprockets-rails

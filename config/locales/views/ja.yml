@@ -35,3 +35,14 @@ ja:
     update:
       success: パスワードのリセットが完了しました
       failure: パスワードのリセットに失敗しました
+  spikes:
+    spike:
+      delete: 削除しますか？
+    create:
+      success: スパイクの作成が完了しました
+      failure: スパイクの作成に失敗しました
+    update:
+      success: スパイクの編集が完了しました
+      failure: スパイクの編集に失敗しました
+    destroy:
+      success: スパイクを削除しました

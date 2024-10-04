@@ -1,0 +1,21 @@
+<% content_for(:title, @spike.name) %>
+<div class='md:py-14 py-4 md:max-w-1200 max-w-full mx-auto px-4'>
+
+    <div class="rounded overflow-hidden">
+      <% if @spike.image.attached? %>
+        <%= image_tag @spike.image, class: "w-full md:h-96 h-48 object-cover" %>
+      <% else %>
+        <%= image_tag 'spike_default.jpg', class: "w-full md:h-96 h-48 object-cover" %>
+      <% end %>
+    </div>
+
+    <div class='md:mt-8 mt-4'>
+        <h1 class='text-center md:text-3xl text-2xl text-black font-bold'><%= @spike.name %></h1>
+    </div>
+</div>
+
+<div class='md:mt-4 mt-2 text-center'>
+    <%= link_to t('.戻る'), spikes_path, class: 'underline underline-offset-2 text-link hover:opacity-70 font-bold' %>
+</div>
+
+</div>
