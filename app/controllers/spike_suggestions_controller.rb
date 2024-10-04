@@ -1,6 +1,6 @@
 class SpikeSuggestionsController < ApplicationController
-  before_action :require_login
-  before_action :set_user
+  before_action :require_login, except: :index
+  before_action :set_user, except: :index
 
   # GET /spike_suggestions
   def index
