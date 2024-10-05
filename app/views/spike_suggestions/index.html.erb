@@ -4,30 +4,30 @@
     <p class='text-center text-black mt-2'><%= t('.AIの提案は1日3回まで受けることができます。次の日にリセットされます。') %></p>
 
     <div class="md:mt-8 mt-4">
-        <%= form_with model: @spike_suggestion, url: '#', local: true, id: 'spike-suggestion-form' do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
+        <%= form_with model: @spike_suggestion, url: spike_suggestions_path, local: true, id: 'spike-suggestion-form' do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-black">
-            <div class="flex flex-col">
-            <%= f.label :種類, class: 'text-black font-bold md:text-xl text-lg required' %>
-            <%= f.text_field :spike_type, class: 'shadow appearance-none border-2 border-blue rounded md:mt-2 mt-1 py-2 px-3 leading-tight focus:outline-none focus:shadow-outline', value: params[:spike_type], placeholder: '金属orポイント' %>
-        </div>
-        <div class="flex flex-col">
-            <%= f.label :予算, class: 'text-black font-bold md:text-xl text-lg required' %>
-            <%= f.text_field :budget, class: 'shadow appearance-none border-2 border-blue rounded md:mt-2 mt-1 py-2 px-3 leading-tight focus:outline-none focus:shadow-outline', value: params[:budget], placeholder: '予算を入力' %>
-        </div>
-        <div class="flex flex-col">
-            <%= f.label :重量, class: 'text-black font-bold md:text-xl text-lg required' %>
-            <%= f.text_field :weight, class: 'shadow appearance-none border-2 border-blue rounded md:mt-2 mt-1 py-2 px-3 leading-tight focus:outline-none focus:shadow-outline', value: params[:weight], placeholder: 'ex.300g' %>
-        </div>
-        <div class="flex flex-col">
-            <%= f.label :足首のタイプ, class: 'text-black font-bold md:text-xl text-lg required' %>
-            <%= f.text_field :ankle_type, class: 'shadow appearance-none border-2 border-blue rounded md:mt-2 mt-1 py-2 px-3 leading-tight focus:outline-none focus:shadow-outline', value: params[:ankle_type], placeholder: 'ローカットorミドルカットorハイカット' %>
-        </div>
-        <div class="col-span-1 md:col-span-2 flex flex-col">
-            <%= f.label :希望, class: 'text-black font-bold md:text-xl text-lg' %>
-            <%= f.text_area :memo, class: 'shadow appearance-none border-2 border-blue rounded md:mt-2 mt-1 py-2 px-3 leading-tight focus:outline-none focus:shadow-outline', placeholder: '自由に記述' %>
-        </div>
-    </div>
+                <div class="flex flex-col">
+                    <%= f.label :種類, class: 'text-black font-bold md:text-xl text-lg required' %>
+                    <%= f.text_field :spike_type, class: 'shadow appearance-none border-2 border-blue rounded md:mt-2 mt-1 py-2 px-3 leading-tight focus:outline-none focus:shadow-outline', value: params[:spike_type], placeholder: '金属orポイント' %>
+                </div>
+                <div class="flex flex-col">
+                    <%= f.label :予算, class: 'text-black font-bold md:text-xl text-lg required' %>
+                    <%= f.text_field :budget, class: 'shadow appearance-none border-2 border-blue rounded md:mt-2 mt-1 py-2 px-3 leading-tight focus:outline-none focus:shadow-outline', value: params[:budget], placeholder: '予算を入力' %>
+                </div>
+                <div class="flex flex-col">
+                    <%= f.label :重量, class: 'text-black font-bold md:text-xl text-lg required' %>
+                    <%= f.text_field :weight, class: 'shadow appearance-none border-2 border-blue rounded md:mt-2 mt-1 py-2 px-3 leading-tight focus:outline-none focus:shadow-outline', value: params[:weight], placeholder: 'ex.300g' %>
+                </div>
+                <div class="flex flex-col">
+                    <%= f.label :足首のタイプ, class: 'text-black font-bold md:text-xl text-lg required' %>
+                    <%= f.text_field :ankle_type, class: 'shadow appearance-none border-2 border-blue rounded md:mt-2 mt-1 py-2 px-3 leading-tight focus:outline-none focus:shadow-outline', value: params[:ankle_type], placeholder: 'ローカットorミドルカットorハイカット' %>
+                </div>
+                <div class="col-span-1 md:col-span-2 flex flex-col">
+                    <%= f.label :希望, class: 'text-black font-bold md:text-xl text-lg' %>
+                    <%= f.text_area :memo, class: 'shadow appearance-none border-2 border-blue rounded md:mt-2 mt-1 py-2 px-3 leading-tight focus:outline-none focus:shadow-outline', placeholder: '自由に記述' %>
+                </div>
+            </div>
             <div class="flex items-center justify-center mt-6">
                 <%= f.submit "提案を受ける（未実装）", id: 'suggestion', class: 'btn underline underline-offset-2 text-link font-bold bg-blue-500 text-white rounded no-underline cursor-pointer hover:opacity-70' %>
             </div>
@@ -37,10 +37,10 @@
         </div>
     </div>
 
-    <% if @items.present? %>
+    <% if @recommended_items.present? %>
         <h2 class="text-black font-bold md:text-xl text-lg md:mt-8 mt-4"><%= t('.オススメのスパイク') %></h2>
         <div class="grid md:grid-cols-4 grid-cols-1 md:gap-4 gap-2 md:mt-6 mt-3">
-            <% @items.each do |item| %>
+            <% @recommended_items.each do |item| %>
                 <div class="w-full">
                     <%= link_to item[:url], target: "_blank", class: 'block h-full card-shine hover:shadow-lg transition transform hover:scale-105' do %>
                         <div class="border-[#1E90FF] border-2 rounded-lg p-4 h-full flex flex-col">
@@ -53,6 +53,6 @@
             <% end %>
         </div>
     <% else %>
-        <p class="text-center"><%= t('.オススメのスパイクはありません') %></p>
+        <p class="text-center text-red-500"><%= @error_message || t('.no_items_found') %></p>
     <% end %>
 </div>
