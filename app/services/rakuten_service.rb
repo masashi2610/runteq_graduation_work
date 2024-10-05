@@ -2,8 +2,8 @@ class RakutenService
   def self.search_rakuten_api(keyword)
     return [] if keyword.blank? # キーワードが空の場合は空の配列を返す
 
-    app_id = Rails.application.credentials.rakuten[:app_id] # アプリケーションIDを取得
-    affiliate_id = Rails.application.credentials.rakuten[:affiliate_id] # アフィリエイトIDも取得
+    app_id = ENV['RAKUTEN_APP_ID']          # 環境変数から取得
+    affiliate_id = ENV['RAKUTEN_AFFILIATE_ID'] # 環境変数から取得
 
     raise 'Application ID is not defined' if app_id.blank? # アプリケーションIDが空ならエラーを発生させる
 
