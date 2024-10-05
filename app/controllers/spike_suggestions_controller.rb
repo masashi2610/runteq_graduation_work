@@ -4,54 +4,46 @@ class SpikeSuggestionsController < ApplicationController
 
   # GET /spike_suggestions
   def index
-    # 初期表示用のキーワードで楽天API検索
-    keyword = params[:keyword] || '野球スパイク最新'
+    if request.get?
+      # 初期表示用のキーワードで楽天API検索
+      keyword = params[:keyword] || t('野球スパイク最新')
+      
+      # オススメスパイクを楽天APIから取得
+      @items = RakutenService.search_rakuten_api('野球スパイク')
 
-    # 楽天APIからオススメスパイクを取得
-    begin
-      @recommended_items = RakutenService.search_rakuten_api(keyword)
-      Rails.logger.info("Rakuten API Response: #{@recommended_items.inspect}")  # ここを追加
-    rescue RakutenWebService::WrongParameter => e
-      Rails.logger.error("Rakuten API Error: #{e.message}")  # エラーメッセージを記録
-      @recommended_items = []
-      @error_message = t('spike_suggestions.index.not_found_products')
-    end
-  end
+      # 初期表示時に取得したアイテムをオススメとしてセット
+      @recommended_items = RakutenService.search_rakuten_api('野球スパイク') 
+    elsif request.post?
+      # フォームからの提案生成リクエスト
+      if all_params_present?(params[:spike_suggestion])
+        @suggestion = OpenaiService.get_chat_response(spike_suggestion_params(params[:spike_suggestion]))
+        Rails.logger.info("OpenAI Suggestion: #{@suggestion}")
+        @keyword = self.class.extract_product_name(@suggestion)
+        Rails.logger.info("Extracted Keyword: #{@keyword}")
 
-  # POST /spike_suggestions
-  def create
-    # フォームからの提案生成リクエスト
-    if all_params_present?(params[:spike_suggestion])
-      @suggestion = OpenaiService.get_chat_response(spike_suggestion_params(params[:spike_suggestion]))
-      Rails.logger.info("OpenAI Suggestion: #{@suggestion}")
-      @keyword = self.class.extract_product_name(@suggestion)
-      Rails.logger.info("Extracted Keyword: #{@keyword}")
-
-      if @keyword.present?
-        begin
-          @recommended_items = RakutenService.search_rakuten_api(@keyword)
-        rescue RakutenWebService::WrongParameter => e
-          Rails.logger.error("Rakuten API Error: #{e.message}")
-          @recommended_items = []
+        if @keyword.present?
+          begin
+            @items = RakutenService.search_rakuten_api(@keyword)
+          rescue RakutenWebService::WrongParameter => e
+            Rails.logger.error("Rakuten API Error: #{e.message}")
+            @items = []
+            @error_message = t('spike_suggestions.index.not_found_products')
+          end
+        else
+          @items = []
           @error_message = t('spike_suggestions.index.not_found_products')
         end
-      else
-        @recommended_items = []
-        @error_message = t('spike_suggestions.index.not_found_products')
-      end
 
-      if @user.can_suggest?
-        @user.increment_suggestion_count
+        if @user.can_suggest?
+          @user.increment_suggestion_count
+        else
+          @error_message ||= t('spike_suggestions.index.suggestion_limit.failure')
+        end
       else
-        @error_message ||= t('spike_suggestions.index.suggestion_limit.failure')
+        flash.now[:alert] = t('spike_suggestions.create.failure')
+        @items = []
       end
-    else
-      flash.now[:alert] = t('spike_suggestions.create.failure')
-      @recommended_items = []
     end
-
-    # レンダリングするビューを指定（indexビューを再利用）
-    render :index
   end
 
   private
@@ -62,12 +54,12 @@ class SpikeSuggestionsController < ApplicationController
 
   # フォームから送信されたパラメータを許可
   def spike_suggestion_params(params)
-    params.permit(:spike_type, :budget, :weight, :ankle_type, :memo)
+    params.permit(:spike_type, :budget, :weight, :anckle_type, :memo)
   end
 
   # 必要なパラメータが全て揃っているか確認
   def all_params_present?(params)
-    required_params = [:spike_type, :budget, :weight, :ankle_type, :memo]
+    required_params = [:spike_type, :budget, :weight, :anckle_type, :memo]
     required_params.all? { |param| params[param].present? }
   end
 
